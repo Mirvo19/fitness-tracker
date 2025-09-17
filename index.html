@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/components.css">
+    <link rel="stylesheet" href="./css/utilities.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+    <link rel="stylesheet" href="./css/workout-items.css">
+    <link rel="stylesheet" href="./css/feedback.css">
+</head>
+<body class="theme-dark">
+    <div class="toast-container" id="toast-container"></div>
+    
+    <header>
+        <div class="flex items-center gap-4">
+            <h1 class="title">Fitness Tracker</h1>
+            <button id="theme-toggle" class="btn btn-secondary" aria-label="Toggle theme">
+                <svg class="icon icon-sm theme-dark-icon" viewBox="0 0 24 24">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+                <svg class="icon icon-sm theme-light-icon" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+            </button>
+        </div>
+        <nav>
+            <a href="#dashboard" class="flex gap-2 items-center">
+                <svg class="icon icon-sm" viewBox="0 0 24 24">
+                    <rect x="3" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="14" width="7" height="7"></rect>
+                    <rect x="3" y="14" width="7" height="7"></rect>
+                </svg>
+                Dashboard
+            </a>
+            <a href="#library" class="flex gap-2 items-center">
+                <svg class="icon icon-sm" viewBox="0 0 24 24">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+                Library
+            </a>
+            <a href="#feedback" class="flex gap-2 items-center">
+                <svg class="icon icon-sm" viewBox="0 0 24 24">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+                Feedback
+            </a>
+            <a href="#export" class="flex gap-2 items-center">
+                <svg class="icon icon-sm" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
+                Settings
+            </a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section id="onboarding" class="page">
+            <div class="card">
+                <h2 class="section-title">Welcome to Fitness Tracker!</h2>
+                <p class="text-medium mb-4">Set a weekly goal to get started.</p>
+                <div class="form-group">
+                    <label for="goal-input">Weekly Target</label>
+                    <div class="flex gap-3">
+                        <input type="number" id="goal-input" class="form-control" value="150" min="1" max="999">
+                        <select id="goal-metric" class="form-control">
+                            <option value="minutes">minutes</option>
+                            <option value="sessions">sessions</option>
+                        </select>
+                    </div>
+                </div>
+                <button id="set-goal-btn" class="btn btn-primary mt-4">
+                    <svg class="icon icon-sm" viewBox="0 0 24 24">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Set goal & start tracking
+                </button>
+            </div>
+        </section>
+
+        <section id="dashboard" class="page">
+            <div class="dashboard-grid">
+                <div class="card">
+                    <h2 class="section-title">Weekly Progress</h2>
+                    <div class="progress">
+                        <div class="progress-bar-container" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-bar"></div>
+                        </div>
+                        <p id="progress-text" class="progress-text">0 of 150 minutes</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="section-title">Recent Workouts</h3>
+                        <button class="btn btn-secondary" id="add-workout-btn">
+                            <svg class="icon icon-sm" viewBox="0 0 24 24">
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                            </svg>
+                            Add Workout
+                        </button>
+                    </div>
+                    <div class="workout-list" id="workout-list">
+                        <!-- Workouts will be listed here -->
+                        <div class="empty-state">
+                            <div class="empty-state-icon">🏃‍♂️</div>
+                            <p class="empty-state-text">No workouts yet — add your first win!</p>
+                            <button class="btn btn-primary" id="first-workout-btn">Log Workout</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3 class="section-title">Last 7 Days</h3>
+                    <div id="mini-chart" class="chart-container"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="library" class="page">
+            <div class="card">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="section-title">Exercise Library</h2>
+                    <button class="btn btn-secondary" id="add-custom-exercise-btn">
+                        <svg class="icon icon-sm" viewBox="0 0 24 24">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                        Add Custom
+                    </button>
+                </div>
+                <div class="form-group mb-4">
+                    <div class="search-box">
+                        <svg class="icon icon-sm text-medium" viewBox="0 0 24 24">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="text" id="library-search" class="form-control" placeholder="Search exercises...">
+                    </div>
+                </div>
+                <ul id="exercise-list" class="workout-list">
+                    <!-- Exercises will be listed here -->
+                    <div class="empty-state">
+                        <div class="empty-state-icon">💪</div>
+                        <p class="empty-state-text">No custom exercises yet. Add your favorite move.</p>
+                    </div>
+                </ul>
+            </div>
+        </section>
+
+        <section id="feedback" class="page">
+            <div class="feedback-page">
+                <div class="feedback-header">
+                    <h2 class="feedback-title">Suggest Improvements</h2>
+                    <p class="feedback-subtitle">Tell us what would make this app better — quick, kind, helpful.</p>
+                </div>
+                
+                <form id="feedback-form" class="feedback-form">
+                    <!-- Honeypot field -->
+                    <input type="text" class="feedback-bot-field" name="bot-field" tabindex="-1" autocomplete="off">
+                    
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="feedback-name">Name</label>
+                                <input type="text" id="feedback-name" class="form-control" placeholder="Optional — who should we thank?">
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="feedback-email">Email</label>
+                                <input type="email" id="feedback-email" class="form-control" placeholder="All replies via email">
+                                <span class="form-hint">We'll only use this to follow up on your suggestion</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="feedback-category">Category <span class="text-danger">*</span></label>
+                                <select id="feedback-category" class="form-control" required>
+                                    <option value="">Select a category</option>
+                                    <option value="UX">User Experience (UX)</option>
+                                    <option value="Bug">Bug Report</option>
+                                    <option value="Feature">Feature Request</option>
+                                    <option value="Performance">Performance Issue</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label>Priority <span class="text-danger">*</span></label>
+                                <div class="radio-group" role="radiogroup">
+                                    <div class="radio-button">
+                                        <input type="radio" id="priority-low" name="priority" value="Low" required>
+                                        <label for="priority-low">Low</label>
+                                    </div>
+                                    <div class="radio-button">
+                                        <input type="radio" id="priority-medium" name="priority" value="Medium" required>
+                                        <label for="priority-medium">Medium</label>
+                                    </div>
+                                    <div class="radio-button">
+                                        <input type="radio" id="priority-high" name="priority" value="High" required>
+                                        <label for="priority-high">High</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="feedback-suggestion">Your Suggestion <span class="text-danger">*</span></label>
+                        <textarea id="feedback-suggestion" class="form-control" required
+                            minlength="10" maxlength="3000"
+                            placeholder="Be specific — we love details."
+                            aria-describedby="suggestion-hint"></textarea>
+                        <div class="flex justify-between">
+                            <span id="suggestion-hint" class="form-hint">Minimum 10 characters</span>
+                            <span class="char-counter" id="char-counter">0 / 3000</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Screenshot (optional)</label>
+                        <div class="file-upload">
+                            <input type="file" id="file-upload" class="file-upload-input" 
+                                accept="image/png,image/jpeg,image/webp"
+                                aria-describedby="file-hint">
+                            <label for="file-upload" class="file-upload-button">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="17 8 12 3 7 8"></polyline>
+                                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                                </svg>
+                                Drop image here or click to upload
+                            </label>
+                            <span id="file-hint" class="form-hint">Accepted formats: PNG, JPEG, WebP (max 5MB)</span>
+                        </div>
+                        <div id="file-preview" class="file-preview"></div>
+                        <div id="upload-progress" class="upload-progress" style="display: none;">
+                            <div class="progress-bar">
+                                <div class="progress-bar-fill" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="consent-checkbox">
+                        <input type="checkbox" id="consent-checkbox">
+                        <label for="consent-checkbox">Share anonymized usage data with this suggestion</label>
+                    </div>
+
+                    <div class="action-buttons">
+                        <span class="draft-status" id="draft-status"></span>
+                        <button type="button" class="btn btn-secondary" id="cancel-feedback">Cancel</button>
+                        <button type="button" class="btn btn-secondary" id="save-draft">Save Draft</button>
+                        <button type="submit" class="btn btn-primary" id="submit-feedback">
+                            Submit
+                            <svg class="icon icon-sm success-checkmark" viewBox="0 0 24 24" style="display: none;">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section id="export" class="page">
+            <div class="card">
+                <h2 class="section-title">Export & Settings</h2>
+                <div class="form-group mb-4">
+                    <label for="start-date">Date Range</label>
+                    <div class="flex gap-3">
+                        <div class="form-group">
+                            <input type="date" id="start-date" class="form-control">
+                            <span class="text-low text-sm">From</span>
+                        </div>
+                        <div class="form-group">
+                            <input type="date" id="end-date" class="form-control">
+                            <span class="text-low text-sm">To</span>
+                        </div>
+                    </div>
+                </div>
+                <button id="export-csv-btn" class="btn btn-primary">
+                    <svg class="icon icon-sm" viewBox="0 0 24 24">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    Export CSV
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <button class="fab" id="add-workout-fab" aria-label="Add workout" data-tooltip="Add/Log a new workout">
+        <svg class="icon" viewBox="0 0 24 24">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+        </svg>
+    </button>
+
+    <div id="add-workout-modal" class="modal" role="dialog" aria-labelledby="modal-title">
+        <div class="modal-content">
+            <button class="close-btn" aria-label="Close modal">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <h3 id="modal-title" class="section-title">Add Workout</h3>
+            <form id="workout-form" class="form">
+                <input type="hidden" id="workout-id">
+                
+                <div class="form-group">
+                    <label for="workout-date">Date</label>
+                    <input type="date" id="workout-date" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="workout-duration">Duration (minutes)</label>
+                    <input type="number" id="workout-duration" class="form-control" min="1" max="999">
+                </div>
+
+                <div class="form-group">
+                    <label for="workout-type">Type</label>
+                    <select id="workout-type" class="form-control">
+                        <option value="run">Run</option>
+                        <option value="walk">Walk</option>
+                        <option value="weights">Weights</option>
+                        <option value="yoga">Yoga</option>
+                        <option value="hiit">HIIT</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div id="exercises-container" class="form-group">
+                    <h4 class="text-medium mb-2">Exercises</h4>
+                    <div id="added-exercises" class="workout-list mb-3"></div>
+                    <div class="search-box">
+                        <svg class="icon icon-sm text-medium" viewBox="0 0 24 24">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="text" id="exercise-search" class="form-control" placeholder="Search and add an exercise...">
+                    </div>
+                    <ul id="search-results" class="workout-list mt-2"></ul>
+                </div>
+
+                <div class="form-group">
+                    <label for="workout-notes">Notes</label>
+                    <textarea id="workout-notes" class="form-control" rows="3"></textarea>
+                </div>
+
+                <div class="form-buttons">
+                    <button type="button" id="cancel-btn" class="btn btn-secondary">Cancel</button>
+                    <button type="button" id="delete-btn" class="btn btn-danger" style="display: none;">
+                        <svg class="icon icon-sm" viewBox="0 0 24 24">
+                            <polyline points="3 6 5 6 21 6"></polyline>
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                        </svg>
+                        Delete
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        <svg class="icon icon-sm" viewBox="0 0 24 24">
+                            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                            <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                            <polyline points="7 3 7 8 15 8"></polyline>
+                        </svg>
+                        Save Workout
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Additional Scripts -->
+    <script src="./scripts/exercises.js"></script>
+    <script src="./scripts/script.js"></script>
+    <script src="./scripts/feedback.js"></script>
+    
+    <footer style="text-align: center; padding: 1rem; color: var(--text-medium); font-size: 0.875rem;">
+        Made by Samir (fuddi)
+    </footer>
+</body>
+</html>

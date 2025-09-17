@@ -27,10 +27,7 @@ A simple and intuitive web application to track your workouts and fitness goals.
 4. **Switch Themes**
    - Toggle between light and dark mode using the theme button in the header
 
-## Getting Started
 
-1. Open `index.html` in your web browser
-2. No installation required - it works right away!
 
 ## Tips
 

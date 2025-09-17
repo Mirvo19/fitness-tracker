@@ -1,0 +1,322 @@
+/* Feedback Form Styles */
+.feedback-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--space-6);
+    animation: slide-up var(--duration-medium) var(--ease-snappy);
+}
+
+.feedback-header {
+    text-align: center;
+    margin-bottom: var(--space-6);
+}
+
+.feedback-title {
+    font-size: var(--font-h1);
+    color: var(--primary);
+    margin-bottom: var(--space-2);
+}
+
+.feedback-subtitle {
+    color: var(--text-medium);
+    font-size: var(--font-body);
+}
+
+.feedback-form {
+    background: var(--card-bg);
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--z1-shadow);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.form-row {
+    display: flex;
+    gap: var(--space-4);
+    margin-bottom: var(--space-4);
+}
+
+.form-col {
+    flex: 1;
+}
+
+.form-group {
+    margin-bottom: var(--space-4);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: var(--space-2);
+    color: var(--text-high);
+    font-weight: 500;
+}
+
+.form-hint {
+    color: var(--text-medium);
+    font-size: var(--font-small);
+    margin-top: var(--space-1);
+}
+
+.form-control {
+    width: 100%;
+    padding: var(--space-3);
+    background: var(--panel-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-sm);
+    color: var(--text-high);
+    font-family: var(--font-family);
+    font-size: var(--font-body);
+    transition: all var(--duration-fast) var(--ease-standard);
+}
+
+.form-control:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.2);
+}
+
+textarea.form-control {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.char-counter {
+    color: var(--text-medium);
+    font-size: var(--font-small);
+    text-align: right;
+    margin-top: var(--space-1);
+}
+
+.radio-group {
+    display: flex;
+    gap: var(--space-3);
+    margin-top: var(--space-2);
+}
+
+.radio-button {
+    position: relative;
+    flex: 1;
+}
+
+.radio-button input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.radio-button label {
+    display: block;
+    padding: var(--space-2) var(--space-3);
+    text-align: center;
+    background: var(--panel-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease-standard);
+}
+
+.radio-button input[type="radio"]:checked + label {
+    background: var(--primary);
+    color: var(--backdrop);
+    border-color: var(--primary);
+}
+
+.radio-button input[type="radio"]:focus-visible + label {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+.file-upload {
+    position: relative;
+    margin-top: var(--space-2);
+}
+
+.file-upload-input {
+    display: none;
+}
+
+.file-upload-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    width: 100%;
+    padding: var(--space-4);
+    background: var(--panel-bg);
+    border: 2px dashed rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-sm);
+    color: var(--text-medium);
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease-standard);
+}
+
+.file-upload-button:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.file-preview {
+    display: none;
+    margin-top: var(--space-3);
+}
+
+.file-preview img {
+    max-width: 200px;
+    border-radius: var(--radius-sm);
+}
+
+.upload-progress {
+    margin-top: var(--space-3);
+}
+
+.progress-bar {
+    height: 4px;
+    background: var(--panel-bg);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: var(--primary);
+    width: 0%;
+    transition: width var(--duration-medium) var(--ease-standard);
+}
+
+.consent-checkbox {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+    padding: var(--space-3);
+    background: var(--panel-bg);
+    border-radius: var(--radius-sm);
+}
+
+.consent-checkbox input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+}
+
+.action-buttons .btn {
+    min-width: 120px;
+}
+
+.draft-status {
+    color: var(--text-medium);
+    font-size: var(--font-small);
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+/* Toast Animations */
+@keyframes checkmark {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.success-checkmark {
+    color: var(--success);
+    animation: checkmark var(--duration-medium) var(--ease-snappy) forwards;
+}
+
+/* Honeypot field (hidden from users) */
+.feedback-bot-field {
+    position: absolute;
+    left: -9999px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .feedback-page,
+    .success-checkmark {
+        animation: none;
+    }
+}
+
+/* Error Animation */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-2px); }
+    20%, 40%, 60%, 80% { transform: translateX(2px); }
+}
+
+.shake {
+    animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+/* Loading Animation */
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.animate-spin {
+    animation: spin 1s linear infinite;
+}
+
+/* Success Animation */
+@keyframes checkmark {
+    0% { transform: scale(0); opacity: 0; }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.success-checkmark {
+    animation: checkmark 0.3s ease-in-out forwards;
+    color: var(--success);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .feedback-page {
+        padding: var(--space-4);
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: var(--space-4);
+    }
+    
+    .radio-group {
+        flex-direction: column;
+    }
+    
+    .action-buttons {
+        flex-direction: column-reverse;
+        gap: var(--space-3);
+    }
+    
+    .action-buttons .btn {
+        width: 100%;
+    }
+    
+    .draft-status {
+        text-align: center;
+        margin: var(--space-3) 0;
+    }
+}

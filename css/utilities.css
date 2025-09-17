@@ -1,0 +1,136 @@
+/* Utility Classes */
+.icon {
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+}
+
+.icon-sm {
+    width: 16px;
+    height: 16px;
+}
+
+.icon-lg {
+    width: 32px;
+    height: 32px;
+}
+
+/* Accessibility */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.focus-ring {
+    outline: none;
+}
+
+.focus-ring:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+/* Layout Utilities */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-4);
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.gap-2 {
+    gap: var(--space-2);
+}
+
+.gap-3 {
+    gap: var(--space-3);
+}
+
+.gap-4 {
+    gap: var(--space-4);
+}
+
+/* Spacing Utilities */
+.mt-2 { margin-top: var(--space-2); }
+.mt-4 { margin-top: var(--space-4); }
+.mb-2 { margin-bottom: var(--space-2); }
+.mb-4 { margin-bottom: var(--space-4); }
+.ml-2 { margin-left: var(--space-2); }
+.mr-2 { margin-right: var(--space-2); }
+
+.p-2 { padding: var(--space-2); }
+.p-4 { padding: var(--space-4); }
+
+/* Text Utilities */
+.text-sm { font-size: var(--font-small); }
+.text-base { font-size: var(--font-body); }
+.text-lg { font-size: var(--font-h3); }
+.text-xl { font-size: var(--font-h2); }
+
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+
+.text-high { color: var(--text-high); }
+.text-medium { color: var(--text-medium); }
+.text-low { color: var(--text-low); }
+.text-primary { color: var(--primary); }
+.text-success { color: var(--success); }
+.text-danger { color: var(--danger); }
+
+/* Tooltip styles */
+[data-tooltip] {
+    position: relative;
+}
+
+[data-tooltip]::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: var(--space-2) var(--space-3);
+    background: var(--card-bg);
+    color: var(--text-high);
+    font-size: var(--font-small);
+    border-radius: var(--radius-sm);
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--duration-fast) var(--ease-standard);
+    box-shadow: var(--z1-shadow);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+}
+
+[data-tooltip]:hover::before {
+    opacity: 1;
+    visibility: visible;
+    bottom: 130%;
+}

@@ -1,0 +1,145 @@
+/* Workout Item Styles */
+.workout-item {
+    background: var(--card-bg);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease-standard);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    margin-bottom: var(--space-3);
+    backdrop-filter: blur(8px);
+}
+
+.workout-item:hover {
+    transform: translateX(4px) translateY(-2px);
+    box-shadow: var(--z2-shadow);
+    border-color: var(--primary);
+}
+
+.workout-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-3);
+}
+
+.workout-item-title {
+    font-weight: 600;
+    color: var(--text-high);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.workout-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.workout-item-date {
+    color: var(--text-medium);
+    font-size: var(--font-small);
+}
+
+.workout-details {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    margin-top: var(--space-3);
+    padding-top: var(--space-3);
+}
+
+.workout-stats {
+    display: flex;
+    gap: var(--space-4);
+    margin-bottom: var(--space-3);
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--text-medium);
+    font-size: var(--font-small);
+}
+
+.workout-notes {
+    color: var(--text-medium);
+    font-size: var(--font-small);
+    margin-bottom: var(--space-3);
+    line-height: 1.5;
+}
+
+.workout-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-2);
+    opacity: 0;
+    transition: opacity var(--duration-fast) var(--ease-standard);
+}
+
+.workout-item:hover .workout-actions {
+    opacity: 1;
+}
+
+.btn-icon {
+    padding: var(--space-2);
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: var(--text-medium);
+    transition: all var(--duration-fast) var(--ease-standard);
+}
+
+.btn-icon:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-high);
+}
+
+.badge {
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge-easy {
+    background: rgba(52, 211, 153, 0.2);
+    color: var(--success);
+}
+
+.badge-normal {
+    background: rgba(96, 165, 250, 0.2);
+    color: var(--secondary);
+}
+
+.badge-hard {
+    background: rgba(248, 113, 113, 0.2);
+    color: var(--danger);
+}
+
+/* Animation Keyframes */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.workout-item {
+    animation: slideIn 0.3s var(--ease-standard) forwards;
+    animation-delay: calc(var(--index) * 0.05s);
+}

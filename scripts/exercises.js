@@ -14,6 +14,8 @@ class ExerciseLibrary {
         this.exercises = [...exercises];
         this.loadCustomExercises();
         this.setupEventListeners();
+        // Render the initial list of exercises
+        this.renderExerciseList();
     }
 
     loadCustomExercises() {

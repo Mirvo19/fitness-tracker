@@ -792,38 +792,46 @@ document.addEventListener('DOMContentLoaded', () => {
     prefersReducedMotion.addEventListener('change', updateMotionPreference);
 
     // Initial Load
+    // Load workouts from localStorage
+    const savedWorkouts = localStorage.getItem('workouts');
+    if (savedWorkouts) {
+        workouts = JSON.parse(savedWorkouts);
+    }
+    
     if (localStorage.getItem('goal')) {
         renderDashboard();
+    } else {
+        // If no goal is set, still render any existing workouts
+        renderWorkoutList();
     }
 
-    // Add swipe gesture support for mobile
+    // Touch event handling for workout list
+    const workoutList = document.getElementById('workout-list');
     let touchStartX = 0;
     let touchEndX = 0;
     
-    const workoutList = document.getElementById('workout-list');
-    workoutList.addEventListener('touchstart', e => {
-        touchStartX = e.changedTouches[0].screenX;
-    }, false);
-    
-    workoutList.addEventListener('touchend', e => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-    }, false);
-    
-    function handleSwipe() {
-        const SWIPE_THRESHOLD = 50;
-        const diff = touchStartX - touchEndX;
+    if (workoutList) {
+        workoutList.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, false);
         
-        if (Math.abs(diff) > SWIPE_THRESHOLD) {
-            // Left swipe
-            if (diff > 0) {
-                const activeItem = document.elementFromPoint(touchEndX, e.changedTouches[0].screenY)
-                    .closest('.workout-item');
-                if (activeItem) {
-                    const workoutId = activeItem.dataset.id;
-                    deleteWorkout(workoutId);
+        workoutList.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe(e);
+        }, false);
+        
+        function handleSwipe(e) {
+            const SWIPE_THRESHOLD = 50;
+            const diff = touchStartX - touchEndX;
+            
+            if (Math.abs(diff) > SWIPE_THRESHOLD && diff > 0) {
+                // Left swipe
+                const touch = e.changedTouches[0];
+                const activeItem = document.elementFromPoint(touch.clientX, touch.clientY)?.closest('.workout-item');
+                if (activeItem && activeItem.dataset.id) {
+                    deleteWorkout(activeItem.dataset.id);
                 }
             }
         }
     }
-});
+}); // Close the DOMContentLoaded event listener

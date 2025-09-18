@@ -3,6 +3,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelectorAll('nav a');
     const addWorkoutFab = document.getElementById('add-workout-fab');
     const addWorkoutBtn = document.getElementById('add-workout-btn');
+    const exportBtn = document.getElementById('export-csv-btn');
+    
+    // Add click handler for export button
+    if (exportBtn) {
+        exportBtn.addEventListener('click', exportWorkoutsToCSV);
+    }
     const modal = document.getElementById('add-workout-modal');
     const closeModalBtn = document.querySelector('.close-btn');
     const cancelBtn = document.getElementById('cancel-btn');
@@ -134,7 +140,64 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target && e.target.id === 'first-workout-btn') {
             openAddModal();
         }
+        // Add click handler for export button
+        if (e.target && e.target.id === 'export-csv-btn') {
+            exportWorkoutsToCSV();
+        }
     });
+
+    // Export functionality
+    function exportWorkoutsToCSV() {
+        try {
+            // Get workouts from localStorage
+            const workouts = JSON.parse(localStorage.getItem('workouts') || '[]');
+            
+            if (workouts.length === 0) {
+                alert('No workout data to export.');
+                return;
+            }
+
+            // Create CSV header
+            const headers = ['Date', 'Exercise', 'Duration (min)', 'Intensity', 'Notes'];
+            
+            // Create CSV rows
+            const csvRows = [
+                headers.join(','),
+                ...workouts.map(workout => 
+                    [
+                        `"${workout.date || ''}"`,
+                        `"${workout.exercise || ''}"`,
+                        `"${workout.duration || ''}"`,
+                        `"${workout.intensity || ''}"`,
+                        `"${(workout.notes || '').replace(/"/g, '""')}"`
+                    ].join(',')
+                )
+            ];
+
+            // Create CSV string
+            const csvString = csvRows.join('\n');
+            
+            // Create download link
+            const blob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            const dateStr = new Date().toISOString().split('T')[0];
+            
+            link.setAttribute('href', url);
+            link.setAttribute('download', `workouts_${dateStr}.csv`);
+            link.style.visibility = 'hidden';
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Show success message
+            showToast('Workouts exported successfully!', 'success');
+        } catch (error) {
+            console.error('Error exporting workouts:', error);
+            showToast('Failed to export workouts', 'error');
+        }
+    }
 
     // Onboarding logic
     const setGoalBtn = document.getElementById('set-goal-btn');
